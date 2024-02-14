@@ -1,2 +1,2 @@
-from principal.mods.funcao import*
-senha()
+from principal.mods.organizacao import*
+menu()
