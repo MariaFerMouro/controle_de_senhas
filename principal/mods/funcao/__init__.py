@@ -25,27 +25,20 @@ def senha():
                 cont += 1
 
         if num < 2:
-            print('Sua senha precisa ter dois ou mais números')
-            num = False
-        else:
-            num = True
+            print('\033[:31mSua senha precisa ter dois ou mais números\033[m')
+            continue
         if cont < 8:
-            print('Sua senha precisa ter 8 ou mais caractéries')
-            cont = False
-        else:
-            cont = True
+            print('\033[:31mSua senha precisa ter 8 ou mais caractéries\033[m')
+            continue
         if mai < 2:
-            print('Sua senha precisa ter 2 ou mias letras maiúsculas')
-            mai = False
-        else:
-            mai = True
+            print('\033[:31mSua senha precisa ter 2 ou mias letras maiúsculas\033[m')
+            continue
         if esp == 0:
-            print('Sua senha precisa ter pelo menos 1 caractere especial')
-            esp = False
-        else:
-            esp = True
-        print(cont, num, mai, esp)
-
+            print('\033[:31mSua senha precisa ter pelo menos 1 caractere especial\033[m')
+            continue
+        break
+    with open("banco_de_dados.txt", "a") as senhas:
+        senhas.write(f"\n{x}")
 def especiais(a):
     cont = 0
     while True:
