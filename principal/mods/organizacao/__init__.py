@@ -16,4 +16,25 @@ def menu():
         sleep(1)
         senha()
     if y == 3:
-        print('banco de dados')
+        acesso = input('Senha do administrador: ').strip()
+        resultado = '12345'
+        if acesso == resultado:
+            contador = 0
+            numuser = 0
+            banco = r"C:/Users/Maria Fernanda/PycharmProjects/gerador_de_senhas/principal/banco_de_dados.txt"
+            with open(banco, "r") as linhas:
+                usuarios = linhas.readlines()
+                print('\033[:33m='*40)
+                print(f'{"N°":<5}',f'{"Username":<20}', 'Senha' )
+                for cn in usuarios:
+                    contador += 1
+                    if contador % 2 == 0: #senhas
+                        numuser += 1
+                        senhas = cn
+                        print(f'\033[34m{numuser:<5}', f'\033[m{contrabarran(username):<20}', contrabarran(senhas))
+                    else:#username
+                        username = cn
+
+                print('\033[:33m=' * 40)
+        else:
+            print('\033[31mSenha incorreta!')
