@@ -1,5 +1,5 @@
 from principal.mods.erro import erro
-from principal.mods.funcao import senha
+from principal.mods.funcao import *
 from time import sleep
 def menu():
     print('\033[:33m='*40)
@@ -11,6 +11,9 @@ def menu():
     if y == 1:
         print('fazer login')
     if y == 2:
-        print('cadastro')
+        sleep(1)
+        user()
+        sleep(1)
+        senha()
     if y == 3:
         print('banco de dados')

@@ -4,12 +4,12 @@ def erro(a):
         try:
             y = int(x)
         except(TypeError, ValueError):
-            print(f'O programa não aceita o valor "{x}", tente novamente!')
+            print(f'\033[31mO programa não aceita o valor "{x}", tente novamente!\033[m')
             continue
         except(KeyboardInterrupt):
-            print('Você interrompeu o programa!')
+            print('\033Você interrompeu o programa!\033[m')
         if 0 < y < 4:
             return y
         else:
-            print('Esse comando não exisite!')
+            print('\033Esse comando não exisite!\033[m')
             continue

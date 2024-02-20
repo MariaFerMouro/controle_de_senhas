@@ -1,16 +1,19 @@
+from time import sleep
 def senha():
+    '''
+    Verifica se a senha está nos padrões exijidos e cadastra no banco de dados
+    :return: none
+    '''
     print('\033[:31m* Sua senha deve conter no mínimo: '
           '\n8 caractéres; '
           '\n2 letras maiúsculas; '
           '\n1 caractére especial (!@#$%&*);'
           '\n2 números; '
           '\nNÃO PODENDO CONTER ESPAÇOS. \033[m')
+    sleep(2)
     while True:
         x = input('Escolha a sua senha:')
-        cont = 0
-        num = 0
-        mai = 0
-        esp = 0
+        cont = num =mai =esp = 0
         if ' ' in x:
             print('O sistema não aceita espaços na senha.')
             continue
@@ -39,6 +42,37 @@ def senha():
         break
     with open("banco_de_dados.txt", "a") as senhas:
         senhas.write(f"\n{x}")
+    print('\033[32mSua senha foi cadastrada!\033[m')
+def user():
+    banco =r"C:/Users/Maria Fernanda/PycharmProjects/gerador_de_senhas/principal/banco_de_dados.txt"
+    while True:
+        x = input('\033[mEscolha um nome de usuário: ').strip().capitalize()
+        with open(banco, "r") as use:
+            numuser = len(use.readlines())
+            if numuser == 0:
+                with open(banco, "w") as primeiro_user:
+                    primeiro_user.write(x)
+                break
+            else:
+                igual = 0
+                contador = 0
+                with open(banco, "r") as linhas:
+                    linha = linhas.readlines()
+                    for lin in linha:
+                        contador += 1
+                        resto = contador % 2
+                        if resto != 0:
+                            if contrabarran(lin) == x:
+                                igual += 1
+                    if igual == 0:
+                        with open(banco, "a") as outros_users:
+                            outros_users.write(f'\n{x}')
+                        print('\033[32mNome adicionado com sucesso!')
+                        break
+                    if igual > 0:
+                        print('\033[31mEsse nome de usuário já existe, tente outro!\033[m')
+                        continue
+
 def especiais(a):
     cont = 0
     while True:
@@ -86,4 +120,8 @@ def especiais(a):
             return True
         if cont == 0:
             return False
-
+def contrabarran(a):
+    if '\n' in a:
+        return a.replace('\n', '')
+    else:
+        return a
