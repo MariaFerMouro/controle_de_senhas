@@ -8,7 +8,7 @@ def erro(a):
             continue
         except(KeyboardInterrupt):
             print('\033Você interrompeu o programa!\033[m')
-        if 0 < y < 4:
+        if 0 < y < 5:
             return y
         else:
             print('\033Esse comando não exisite!\033[m')

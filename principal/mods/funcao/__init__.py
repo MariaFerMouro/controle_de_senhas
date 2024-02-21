@@ -125,3 +125,28 @@ def contrabarran(a):
         return a.replace('\n', '')
     else:
         return a
+
+
+def login():
+    user = input('Nome de usuário:').strip().capitalize()
+    senha = input('Senha:').strip()
+    banco = r"C:/Users/Maria Fernanda/PycharmProjects/gerador_de_senhas/principal/banco_de_dados.txt"
+    with open(banco, 'r') as infos:
+        linhas = infos.readlines()
+        contador = 0
+        semcadastro = 0
+        for c in linhas:
+            contador += 1
+            if contador % 2 != 0:
+                if contrabarran(c) == user:
+                    if senha == contrabarran(linhas[contador]):
+                        print('\033[32mBem vindo ao sistema!\033[m')
+                        break
+                    else:
+                        print('\033[31mA senha não condiz com o usuário!\033[m')
+                        break
+                else:
+                    semcadastro += 1
+        if semcadastro == (len(linhas)) / 2:
+            print('\033[31mEsse usuário não existe!\033[m')
+
