@@ -1,5 +1,5 @@
-from time import sleep
 def senha():
+    from time import sleep
     '''
     Verifica se a senha está nos padrões exijidos e cadastra no banco de dados
     :return: none
@@ -12,6 +12,7 @@ def senha():
           '\nNÃO PODENDO CONTER ESPAÇOS. \033[m')
     sleep(2)
     while True:
+        print (f'\033[:34mSugestão de senha forte: {gerador()}\033[m')
         x = input('Escolha a sua senha:')
         cont = num =mai =esp = 0
         if ' ' in x:
@@ -149,4 +150,53 @@ def login():
                     semcadastro += 1
         if semcadastro == (len(linhas)) / 2:
             print('\033[31mEsse usuário não existe!\033[m')
+def gerador():
+    from random import sample, choice
+    lista = sample(range(1,11), 10)
+    senha = list()
+    while True:
+        for num in lista:
+            if num == 1:
+                lista1 = ['!','@','#','$','%','&','*','+','=','-','_',':',';','.',',','<','>','?','/','°']
+                senha.append(choice(lista1))
+            if num == 2:
+                lista2 = ['!','@','#','$','%','&','*','+','=','-','_',':',';','.',',','<','>','?','/','°']
+                senha.append(choice(lista2))
+            if num == 3:
+                lista3 = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+                senha.append(choice(lista3))
+            if num == 4:
+                lista4 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+                senha.append(choice(lista4))
+            if num == 5:
+                lista5 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+                senha.append(choice(lista5))
+            if num == 6:
+                lista6 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+                senha.append(choice(lista6))
+            if num == 7:
+                lista7 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+                senha.append(choice(lista7))
+            if num == 8:
+                lista8 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+                senha.append(choice(lista8))
+            if num == 9:
+                lista9 = ['1','2','3','4','5','6','7','8','9']
+                senha.append(choice(lista9))
+            if num == 10:
+                lista10 = ['1','2','3','4','5','6','7','8','9']
+                senha.append(choice(lista10))
 
+        string = ''.join(senha)
+        contador = 0
+        igual = 0
+        banco = r"C:/Users/Maria Fernanda/PycharmProjects/gerador_de_senhas/principal/banco_de_dados.txt"
+        with open(banco, "r") as linhas:
+            linha = linhas.readlines()
+            for lin in linha:
+                contador += 1
+                if contador % 2 == 0:
+                    if contrabarran(lin) == string:
+                        igual += 1
+        if igual == 0:
+            return string
